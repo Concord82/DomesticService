@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 17:24+0700\n"
+"POT-Creation-Date: 2020-02-03 22:48+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,15 +20,15 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: person/admin.py:59
+#: person/admin.py:60
 msgid "Personal info"
 msgstr "Персональная информация"
 
-#: person/admin.py:65
+#: person/admin.py:68
 msgid "Other info"
 msgstr "Дополнительная информация"
 
-#: person/forms.py:65
+#: person/forms.py:66
 msgid "Password"
 msgstr "Пароль"
 
@@ -66,6 +66,7 @@ msgid "last name"
 msgstr "Фамилия"
 
 #: person/models.py:39 person/models.py:110 person/models.py:135
+#: person/models.py:170
 msgid "Phone Number"
 msgstr "Телефон"
 
@@ -132,3 +133,55 @@ msgstr "Клиент"
 #: person/models.py:164
 msgid "Clients"
 msgstr "Клиенты"
+
+#: person/models.py:168
+#| msgid "first name"
+msgid "office name"
+msgstr "Наименование мастерской"
+
+#: person/models.py:169
+msgid "Short Code"
+msgstr "Литера имени"
+
+#: person/models.py:169
+msgid "Set Short code for current office"
+msgstr "Задайте код офиса для использования в документах"
+
+#: person/models.py:171
+#| msgid "Address"
+msgid "address"
+msgstr "Адрес офиса"
+
+#: person/models.py:172
+#| msgid "Address"
+msgid "address API"
+msgstr "Адрес API для отображения карты"
+
+#: person/models.py:173
+msgid "enabled"
+msgstr "Включено"
+
+#: person/models.py:174
+msgid "Start work time"
+msgstr "Начало рабочего дня"
+
+#: person/models.py:175
+msgid "Start orders out"
+msgstr "Начало выдачи заказов"
+
+#: person/models.py:176
+msgid "End work time"
+msgstr "Конец рабочего дня"
+
+#: person/models.py:180
+#, python-format
+msgid "%s - %s"
+msgstr ""
+
+#: person/models.py:186
+msgid "Office"
+msgstr "Мастерская"
+
+#: person/models.py:187
+msgid "Offices"
+msgstr "Мастерские"

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils.translation import ugettext_lazy as _
-from .models import User
+from .models import User, Offices
 
 
 class RegisterForm(forms.ModelForm):
@@ -26,6 +26,7 @@ class RegisterForm(forms.ModelForm):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords don't match")
         return password2
+
 
 class UserAdminCreationForm(forms.ModelForm):
     """
@@ -68,12 +69,22 @@ class UserAdminChangeForm(forms.ModelForm):
                    "using <a href=\"../password/\">this form</a>.")
     )
 
-    class Meta:
-        model = User
-        fields = ('email', 'password', 'is_active', 'is_admin')
-
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+
+    class Meta:
+        model = User
+        fields = ('email', 'password', 'is_active', 'is_admin')
+
+
+class OfficesForm(forms.ModelForm):
+
+    class Meta:
+        model = Offices
+        fields = '__all__'
+        widgets = {
+            'start_time': forms.TimeInput(),
+        }

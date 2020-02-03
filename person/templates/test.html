@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    fhgfhhhhhhhhhhhh
+<ul>
+    <li>{{ request.headers.user_agent }}</li>
+    <li>{{ request.META.remote_addr }}</li>
+    <li>{{ request.headers.user_agent }}</li>
+</ul>
+
+
+
+{% endblock %}

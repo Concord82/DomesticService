@@ -162,3 +162,30 @@ class Clients(models.Model):
     class Meta:
         verbose_name = _(u'Client')
         verbose_name_plural = _(u'Clients')
+
+
+class Offices(models.Model):
+    name = models.CharField(_('office name'), max_length=32)
+    short_code = models.CharField(_('Short Code'), max_length=5, help_text=_('Set Short code for current office'))
+    phone = models.CharField(_('Phone Number'), max_length=12, unique=True, validators=[validate_phone], blank=True)
+    address = models.CharField(_('address'), max_length=128)
+    address_api = models.TextField(_('address API'), blank=True)
+    enabled = models.BooleanField(_('enabled'), default=False)
+    start_time = models.TimeField(_('Start work time'), blank=True)
+    start_out = models.TimeField(_('Start orders out'), blank=True)
+    end_time = models.TimeField(_('End work time'), blank=True)
+
+    @property
+    def clock_work(self):
+        return _('%s - %s') % (self.start_time.strftime('%-H:%M'), self.end_time.strftime('%-H:%M'))
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _(u'Office')
+        verbose_name_plural = _(u'Offices')
+
+
+#class UserStation(models.Model):
+#    pass
