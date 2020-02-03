@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-03 17:24+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: catalogs/admin.py:22
+#| msgid "gdsCategories"
+msgid "gdsCategories Description"
+msgstr "Категории Товаров"
+
+#: catalogs/admin.py:55
+#| msgid "Deskription"
+msgid "Products Description"
+msgstr "Изделия принимаемые в работу"
+
+#: catalogs/admin.py:68
+#| msgid "Deskription"
+msgid "Operations Description"
+msgstr "Выполняемые работы"
+
+#: catalogs/apps.py:7
+msgid "Catalogs"
+msgstr "Справочники"
+
+#: catalogs/models.py:7 catalogs/models.py:50 catalogs/models.py:65
+msgid "Category Name"
+msgstr "Имя категории"
+
+#: catalogs/models.py:17
+msgid "gdsCategory"
+msgstr "Категория Товара"
+
+#: catalogs/models.py:18
+msgid "gdsCategories"
+msgstr "Категории Товаров"
+
+#: catalogs/models.py:22
+msgid "thing"
+msgstr "Штука"
+
+#: catalogs/models.py:23
+msgid "meter"
+msgstr "Метр"
+
+#: catalogs/models.py:24
+msgid "packaging"
+msgstr "Упаковка"
+
+#: catalogs/models.py:27 catalogs/models.py:46
+msgid "Goods"
+msgstr "Товары"
+
+#: catalogs/models.py:28
+msgid "Vendor Code"
+msgstr "Артикул"
+
+#: catalogs/models.py:29
+msgid "Unit"
+msgstr "Единица измерения"
+
+#: catalogs/models.py:30 catalogs/models.py:82
+msgid "Price"
+msgstr "Цена"
+
+#: catalogs/models.py:31
+msgid "Deskription"
+msgstr "Описание"
+
+#: catalogs/models.py:32
+msgid "Photo"
+msgstr "Фото"
+
+#: catalogs/models.py:36 catalogs/models.py:42 catalogs/models.py:86
+#: catalogs/models.py:92
+#, python-format
+msgid "$ %s"
+msgstr "%s руб."
+
+#: catalogs/models.py:41 catalogs/models.py:91
+#, python-format
+msgid "$ %s %s.%s"
+msgstr "%s %s.%s руб."
+
+#: catalogs/models.py:45
+msgid "Good"
+msgstr "Товар"
+
+#: catalogs/models.py:60
+msgid "Product"
+msgstr "Изделие клиента"
+
+#: catalogs/models.py:61
+msgid "Products"
+msgstr "Изделия клиентов"
+
+#: catalogs/models.py:75
+#| msgid "Deskription"
+msgid "Operation"
+msgstr "Операция"
+
+#: catalogs/models.py:76
+msgid "Operations"
+msgstr "Операции"
+
+#: catalogs/models.py:101
+msgid "Price Operation"
+msgstr "Выполняемая работа"
+
+#: catalogs/models.py:102
+msgid "Price Operations"
+msgstr "Выполняемые работы"

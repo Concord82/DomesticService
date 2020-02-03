@@ -41,11 +41,14 @@ DJANGO_DEFAULT_APPS = [
 OTHER_APPS = [
     'django_summernote',
     'constance',
-    'constance.backends.database'
+    'constance.backends.database',
+    'mptt',
+
 ]
 
 MY_APPS = [
     'person.apps.PersonConfig',
+    'catalogs.apps.CatalogsConfig',
 ]
 
 INSTALLED_APPS = DJANGO_DEFAULT_APPS + OTHER_APPS + MY_APPS
@@ -151,3 +154,4 @@ CONSTANCE_CONFIG = {
     'SNILS':('12345678901', 'Страховой номер индивидуального лицевого счёта', str ),
 
 }
+MPTT_ADMIN_LEVEL_INDENT = 20
