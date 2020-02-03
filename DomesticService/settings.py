@@ -29,16 +29,26 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
-INSTALLED_APPS = [
+DJANGO_DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+OTHER_APPS = [
+    'django_summernote',
+    'constance',
+    'constance.backends.database'
+]
+
+MY_APPS = [
     'person.apps.PersonConfig',
 ]
+
+INSTALLED_APPS = DJANGO_DEFAULT_APPS + OTHER_APPS + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,9 +134,20 @@ DATE_FORMAT = 'd M Y'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'uploads')
 MEDIA_URL = '/uploads/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
 )
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'Company_Name':('ИП Имя', 'Наименование организации', str),
+    'OGRNIP':('01234567890123', 'Основной государственный регистрационный номер индивидуального предпринимателя', str),
+    'INN':('123456789012', 'Идентификационный номер налогоплательщика', str),
+    'SNILS':('12345678901', 'Страховой номер индивидуального лицевого счёта', str ),
+
+}

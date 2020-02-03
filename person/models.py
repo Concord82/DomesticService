@@ -3,10 +3,11 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
+from django.utils.html import mark_safe
+from django.core.exceptions import ValidationError
+from django.db import models
 
 from .managers import UserManager
-from django.db import models
-from django.core.exceptions import ValidationError
 # Create your models here.
 
 
@@ -65,6 +66,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         else:
             return self.email
 
+    def image_tag(self):
+        return mark_safe('<img src="/directory/%s" width="150" height="150" />' % (self.avatar))
+
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
+
+
     def __str__(self):  # __unicode__ on Python 2
         return self.get_short_name()
 
@@ -93,3 +101,64 @@ class User(AbstractBaseUser, PermissionsMixin):
             if self.phone[0] == '7' or self.phone[0] == '8':
                 self.phone = '+7' + self.phone[1:]
         super(User, self).save(*args, **kwargs)
+
+
+class Clients(models.Model):
+    first_name = models.CharField(_('first name'), max_length=30)
+    middle_name = models.CharField(_('Middle Name User'), max_length=64)
+    last_name = models.CharField(_('last name'), max_length=30)
+    phone = models.CharField(_('Phone Number'), max_length=12, unique=True, validators=[validate_phone])
+    email = models.EmailField(_('email address'), unique=True, blank=True)
+    address = models.CharField(_('Address'), max_length=64, blank=True)
+    birthDay = models.DateField(_('User BirthDay'), blank=True, null=True)
+    creationData = models.DateTimeField(_('Registration Data'), auto_now_add=True)
+    lastAction = models.DateTimeField(_('Last Action Data'), blank=True, null=True)
+    comment = models.TextField(_('Comment'), blank=True)
+    ranks = models.IntegerField(_('Clients ratio'), default=0)
+
+    def get_full_name(self):
+        return self.last_name + ' ' + self.first_name + ' ' + self.middle_name
+
+    get_full_name.short_description = _('Full Name User')
+
+    def get_short_name(self):
+        return self.last_name + ' ' + self.first_name[0] + '.' + self.middle_name[0] + '.'
+
+    get_short_name.short_description = _('Short Name User')
+
+    def get_phone_number(self):
+        if self.phone[0:6] == '+73822':
+            return '+7 (3822) ' + self.phone[6:9] + '-' + self.phone[9:]
+        else:
+            return self.phone[0:2] + '-' + self.phone[2:5] + '-' + self.phone[5:8] + '-' + self.phone[8:]
+
+    get_phone_number.short_description = _('Phone Number')
+
+    def comment_preview(self):
+        coment_list = self.comment.split(' ')
+        if len(coment_list) > 5:
+            return ' '.join(coment_list[:5])
+        else:
+            return self.comment
+
+    def clean(self):
+        if len(self.phone) == 6:
+            self.phone = '+73822' + self.phone
+        elif len(self.phone) == 10:
+            self.phone = '+7' + self.phone
+        elif len(self.phone) == 11:
+            if self.phone[0] == '7' or self.phone[0] == '8':
+                self.phone = '+7' + self.phone[1:]
+
+    def save(self, *args, **kwargs):
+        self.first_name = self.first_name.capitalize()
+        self.last_name = self.last_name.capitalize()
+        self.middle_name = self.middle_name.capitalize()
+        super(Clients, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.get_short_name()
+
+    class Meta:
+        verbose_name = _(u'Client')
+        verbose_name_plural = _(u'Clients')
