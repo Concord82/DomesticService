@@ -19,6 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('main.urls')),
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     path('person', include('person.urls')),

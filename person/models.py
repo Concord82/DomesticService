@@ -55,12 +55,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
-    def get_full_name(self):
-        # The user is identified by their email address
+    def get_full_name(self):  # The user is identified by their email address
         return self.last_name + ' ' + self.first_name + ' ' + self.middle_name
 
+
     def get_short_name(self):
-        # The user is identified by their email address
+        '''The user is identified by their email address'''
         if self.first_name != '' and self.middle_name != '' and self.last_name != '':
             return self.last_name + ' ' + self.first_name[0] + '.' + self.middle_name[0] + '.'
         else:
@@ -71,7 +71,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
-
 
     def __str__(self):  # __unicode__ on Python 2
         return self.get_short_name()
@@ -103,7 +102,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         super(User, self).save(*args, **kwargs)
 
 
+
 class Clients(models.Model):
+    ''' Класс клиентов которые обращаются для выпонения работ. '''
     first_name = models.CharField(_('first name'), max_length=30)
     middle_name = models.CharField(_('Middle Name User'), max_length=64)
     last_name = models.CharField(_('last name'), max_length=30)
@@ -116,17 +117,21 @@ class Clients(models.Model):
     comment = models.TextField(_('Comment'), blank=True)
     ranks = models.IntegerField(_('Clients ratio'), default=0)
 
+
     def get_full_name(self):
+        '''вывод полного имени клиента'''
         return self.last_name + ' ' + self.first_name + ' ' + self.middle_name
 
     get_full_name.short_description = _('Full Name User')
 
     def get_short_name(self):
+        '''краткая форма вывода имени клиента'''
         return self.last_name + ' ' + self.first_name[0] + '.' + self.middle_name[0] + '.'
 
     get_short_name.short_description = _('Short Name User')
 
     def get_phone_number(self):
+        '''вывод номера телефона в правильном формате'''
         if self.phone[0:6] == '+73822':
             return '+7 (3822) ' + self.phone[6:9] + '-' + self.phone[9:]
         else:
@@ -135,6 +140,7 @@ class Clients(models.Model):
     get_phone_number.short_description = _('Phone Number')
 
     def comment_preview(self):
+        '''комментарий клиента превьюха для вывода'''
         coment_list = self.comment.split(' ')
         if len(coment_list) > 5:
             return ' '.join(coment_list[:5])
@@ -165,6 +171,18 @@ class Clients(models.Model):
 
 
 class Offices(models.Model):
+
+    ''' База филиалов для работы.
+    * name        Имя филиала
+    * short_code  короткий код для генерации отчетных документов по этому офису
+    * phone       номер телефона
+    * address     адрес места расположения
+    * address_api код для вставки карты места расположения
+    * enabled     включенно. Офис активен и доступен для просмотра клиентам
+    * start_time  время начала рабочего времени
+    * start_out   время начала выдачи заказов
+    * end_time    конец рабочего дня
+    '''
     name = models.CharField(_('office name'), max_length=32)
     short_code = models.CharField(_('Short Code'), max_length=5, help_text=_('Set Short code for current office'))
     phone = models.CharField(_('Phone Number'), max_length=12, unique=True, validators=[validate_phone], blank=True)
@@ -175,11 +193,13 @@ class Offices(models.Model):
     start_out = models.TimeField(_('Start orders out'), blank=True)
     end_time = models.TimeField(_('End work time'), blank=True)
 
+
     @property
     def clock_work(self):
+        ''' Функция отображения рабочего времени в формате 9:00 - 21:00 '''
         return _('%s - %s') % (self.start_time.strftime('%-H:%M'), self.end_time.strftime('%-H:%M'))
 
-    def __str__(self):
+    def __str__(self):  # __unicode__ on Python 2
         return self.name
 
     class Meta:

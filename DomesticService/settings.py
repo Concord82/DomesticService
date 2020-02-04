@@ -36,6 +36,7 @@ DJANGO_DEFAULT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admindocs',
 ]
 
 OTHER_APPS = [
@@ -49,9 +50,26 @@ OTHER_APPS = [
 MY_APPS = [
     'person.apps.PersonConfig',
     'catalogs.apps.CatalogsConfig',
+    'main.apps.MainConfig',
 ]
 
 INSTALLED_APPS = DJANGO_DEFAULT_APPS + OTHER_APPS + MY_APPS
+
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'Company_Name':('ИП Имя', 'Наименование организации', str),
+    'Phone_Number': ('123456', 'Номер телефона для связи', str),
+    'EMail': ('test@gmail.com', 'Адрес электронной почты', str),
+    'OGRNIP':('01234567890123', 'Основной государственный регистрационный номер индивидуального предпринимателя', str),
+    'INN':('123456789012', 'Идентификационный номер налогоплательщика', str),
+    'SNILS':('12345678901', 'Страховой номер индивидуального лицевого счёта', str ),
+
+}
+MPTT_ADMIN_LEVEL_INDENT = 20
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,10 +91,12 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'constance.context_processors.config',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -144,14 +164,3 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
-
-CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
-CONSTANCE_CONFIG = {
-    'Company_Name':('ИП Имя', 'Наименование организации', str),
-    'OGRNIP':('01234567890123', 'Основной государственный регистрационный номер индивидуального предпринимателя', str),
-    'INN':('123456789012', 'Идентификационный номер налогоплательщика', str),
-    'SNILS':('12345678901', 'Страховой номер индивидуального лицевого счёта', str ),
-
-}
-MPTT_ADMIN_LEVEL_INDENT = 20
