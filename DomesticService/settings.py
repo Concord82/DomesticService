@@ -44,6 +44,7 @@ OTHER_APPS = [
     'constance',
     'constance.backends.database',
     'mptt',
+    'adminsortable2',
 
 ]
 
@@ -51,6 +52,7 @@ MY_APPS = [
     'person.apps.PersonConfig',
     'catalogs.apps.CatalogsConfig',
     'main.apps.MainConfig',
+    'workpages.apps.WorkpagesConfig',
 ]
 
 INSTALLED_APPS = DJANGO_DEFAULT_APPS + OTHER_APPS + MY_APPS

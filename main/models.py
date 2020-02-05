@@ -15,6 +15,7 @@ class SocialLink(models.Model):
         (6, 'whatsapp'),
         (7, 'vk'),
     )
+    my_order = models.PositiveIntegerField(default=0, blank=False, null=False)
     socialtype = models.IntegerField(_('Social media'), choices=TYPE_SOCIAL, default=0)
     url = models.URLField(_('URL Adress Social media'))
     enabled = models.BooleanField(_('Enabled state'), default=False)
@@ -22,9 +23,8 @@ class SocialLink(models.Model):
     def __str__(self):  # __unicode__ on Python 2
         return self.get_socialtype_display()
 
-
-
     class Meta:
+        ordering = ['my_order']
         verbose_name = _('Social Net link')
         verbose_name_plural = _('Social Nets Links')
 

@@ -1,42 +1,90 @@
 {% load i18n %}
 {% load static %}
+{% load  main_tags%}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Voloshin Ivan (C) 2020">
-    <title>{% block title %}Дом быта №1{% endblock %} </title>
+    <meta name="author" content="Voloshin I.V.">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <title>{% block title %}Дом быта №1{% endblock %}</title>
+    {% block css_style %}
+         <!-- Favicons -->
+        <link href="{% static 'img/favicon.png' %}" rel="icon">
+        <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+        <!-- Bootstrap CSS File -->
+        <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Libraries CSS Files -->
+        <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+        <!-- Main Stylesheet File -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% endblock %}
 </head>
-<body>
-    <header>
-        {% block mainmenu %}
-            {% include "__header.html" %}
-        {% endblock %}
-    </header>
-
-    <main role="main">
-            <div class="container">
-                {% block content %}
-
-                {% endblock %}
+<body id="body">
+    {% block topbar %}
+    <!--==========================
+    Top Bar
+      ============================-->
+    <section id="topbar" class="d-none d-lg-block">
+        <div class="container clearfix">
+            <div class="contact-info float-left">
+                <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">{{ config.EMail}}</a>
+                <i class="fa fa-phone"></i> {{ config.Phone_Number }}
             </div>
+            {% social_links %}
 
+        </div>
+    </section>
+    {% endblock %}
+    <!--==========================
+        Header
+          ============================-->
+    <header id="header">
+        <div class="container">
+            <div id="logo" class="pull-left">
+                <h1><a href="#body" class="scrollto">Дом <span>быта №1</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+            </div>
+            <!-- Navigation -->
+            {% block mainment %}
+                {% main_menu %}
+            {% endblock %}
+        </div>
+    </header><!-- #header -->
 
+    {% block content %}   {% endblock content %}
 
+    {% block footer %}
+        {% include '__footer.html' %}
+    {% endblock %}
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-
-        {% include "__footer.html" %}
-    </main>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    {% block javascript %}
+        <!-- JavaScript Libraries -->
+        <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+        <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+        <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+        <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+        <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'lib/magnific-popup/magnific-popup.min.js' %}"></script>
+        <script src="{% static 'lib/sticky/sticky.js' %}"></script>
+        <!-- Contact Form JavaScript File -->
+        <script src="contactform/contactform.js' %}"></script>
+        <!-- Template Main Javascript File -->
+        <script src="{% static 'js/main.js' %}"></script>
+    {% endblock %}
 </body>
-</html>

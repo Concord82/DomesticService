@@ -1,0 +1,8 @@
+{% if soc_links %}
+    <div class="social-links float-right">
+        {% for link in soc_links %}
+            <a href="{{ link.url }}" class=""><i class="fa fa-{{ link.get_socialtype_display }}"></i></a>
+        {% endfor %}
+    </div>
+{% endif %}
+

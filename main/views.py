@@ -4,8 +4,7 @@ from constance import config
 
 
 def mainpage(request):
-    print(request.headers)
-    print(request.META)
+#    print(request.headers)
+#    print(request.META)
 
-    print (config.Phone_Number)
-    return render(request, '_base_main.html', {'config': config})
+    return render(request, 'main_page.html', {'config': config})
