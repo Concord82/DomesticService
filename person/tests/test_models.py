@@ -36,9 +36,14 @@ class UserTest(TestCase):
             tst_user = User.objects.get(id=n)
             self.assertEquals(len(tst_user.phone), 12)
 
+    def test_phone_number_prefix(self):
+        tst_user = User.objects.get(id=3)
+        self.assertEquals(tst_user.phone[:2], '+7')
+
     def test_full_name(self):
         tst_user = User.objects.get(id=1)
         self.assertEquals(tst_user.get_full_name(), 'Иванов Иван Иванович')
 
     def test_short_name(self):
         tst_user = User.objects.get(id=1)
+        self.assertEquals(tst_user.get_short_name(), 'Иванов И.И.')

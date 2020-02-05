@@ -15,18 +15,57 @@
 
 {% block content %}
     <section id="content">
-     <div class="container">
-    ui velit efficitur ante, in porttitor sem neque in ipsum. Cras volutpat ex nec erat semper rhoncus. Donec bibendum blandit mi, quis interdum ante placerat non. Cras gravida lacus vitae tortor viverra, nec lacinia mi placerat. In porta lacinia odio et posuere. Nunc vestibulum nisl ac feugiat rutrum. Phasellus id libero nulla. Vivamus quis erat eget risus convallis pellentesque eu quis neque. Aliquam erat volutpat. Aliquam dolor mauris, auctor eget dui vitae, iaculis mollis massa. Cras at rutrum diam. Ut gravida faucibus nibh at aliquam.
+        <div class="container">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group col-sm-4 has-search">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input id="clientSearch" type="text" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </div>
+        <div id="content">
+            <table id="clients_table">
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-Pellentesque varius pharetra dolor non interdum. Phasellus accumsan, quam id congue imperdiet, sapien ligula dignissim ligula, id egestas turpis tortor et ligula. Vivamus turpis felis, pellentesque in leo fringilla, eleifend consectetur nunc. Nunc semper eros non risus vulputate, et placerat libero molestie. Etiam dictum congue scelerisque. Cras ac pretium risus. Suspendisse eget dictum odio. Nunc fringilla, nisl quis tristique pellentesque, lectus nibh accumsan felis, id tempor mi libero et augue. Nulla egestas metus ut turpis maximus sodales et in ligula. Morbi porttitor at leo eget imperdiet. Curabitur egestas suscipit enim, vel rutrum dui efficitur in. Aenean lacus leo, placerat in nulla aliquam, volutpat iaculis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi egestas aliquet ligula, vel tempus elit iaculis at. Maecenas nisl ligula, elementum nec sagittis ac, sodales vel ligula.
 
-         ui velit efficitur ante, in porttitor sem neque in ipsum. Cras volutpat ex nec erat semper rhoncus. Donec bibendum blandit mi, quis interdum ante placerat non. Cras gravida lacus vitae tortor viverra, nec lacinia mi placerat. In porta lacinia odio et posuere. Nunc vestibulum nisl ac feugiat rutrum. Phasellus id libero nulla. Vivamus quis erat eget risus convallis pellentesque eu quis neque. Aliquam erat volutpat. Aliquam dolor mauris, auctor eget dui vitae, iaculis mollis massa. Cras at rutrum diam. Ut gravida faucibus nibh at aliquam.
+                </tbody>
+            </table>
 
-Pellentesque varius pharetra dolor non interdum. Phasellus accumsan, quam id congue imperdiet, sapien ligula dignissim ligula, id egestas turpis tortor et ligula. Vivamus turpis felis, pellentesque in leo fringilla, eleifend consectetur nunc. Nunc semper eros non risus vulputate, et placerat libero molestie. Etiam dictum congue scelerisque. Cras ac pretium risus. Suspendisse eget dictum odio. Nunc fringilla, nisl quis tristique pellentesque, lectus nibh accumsan felis, id tempor mi libero et augue. Nulla egestas metus ut turpis maximus sodales et in ligula. Morbi porttitor at leo eget imperdiet. Curabitur egestas suscipit enim, vel rutrum dui efficitur in. Aenean lacus leo, placerat in nulla aliquam, volutpat iaculis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi egestas aliquet ligula, vel tempus elit iaculis at. Maecenas nisl ligula, elementum nec sagittis ac, sodales vel ligula.
 
-    </div>
+        </div>
+
+
+
     </section>
+
+
 
 {% endblock %}
 
 {% block footer %}{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+
+    <script>
+        $( "#clientSearch" ).change(function() {
+            console.log($("#clientSearch").val())
+            $.ajax({
+                type: "POST",
+                url: "ajax/clientsearch",
+                data: {
+                    'clientSearch':$("#clientSearch").val(),
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function(data){
+                    $("#clients_table").html(data);}
+            });
+        });
+    </script>
+{% endblock %}
