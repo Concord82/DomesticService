@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 22:48+0700\n"
+"POT-Creation-Date: 2020-02-08 23:31+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,160 +28,176 @@ msgstr "Персональная информация"
 msgid "Other info"
 msgstr "Дополнительная информация"
 
+#: person/apps.py:6
+#| msgid "Personal info"
+msgid "Persons"
+msgstr "Объекты работы"
+
 #: person/forms.py:66
 msgid "Password"
 msgstr "Пароль"
 
-#: person/models.py:25
+#: person/models.py:27
 #, python-format
 msgid "%s hashtag doesnot comply"
 msgstr ""
 
-#: person/models.py:30
+#: person/models.py:32
 msgid "administrator"
 msgstr "Администратор"
 
-#: person/models.py:31
+#: person/models.py:33
 msgid "master"
 msgstr "Мастер"
 
-#: person/models.py:32
+#: person/models.py:34
 msgid "manager"
 msgstr "Менеджер"
 
-#: person/models.py:35 person/models.py:111
+#: person/models.py:37 person/models.py:114
 msgid "email address"
 msgstr "E-Mail"
 
-#: person/models.py:36 person/models.py:107
+#: person/models.py:38 person/models.py:110
 msgid "first name"
 msgstr "Имя"
 
-#: person/models.py:37 person/models.py:108
+#: person/models.py:39 person/models.py:111
 msgid "Middle Name User"
 msgstr "Отчество"
 
-#: person/models.py:38 person/models.py:109
+#: person/models.py:40 person/models.py:112
 msgid "last name"
 msgstr "Фамилия"
 
-#: person/models.py:39 person/models.py:110 person/models.py:135
-#: person/models.py:170
+#: person/models.py:41 person/models.py:113 person/models.py:142
+#: person/models.py:190
 msgid "Phone Number"
 msgstr "Телефон"
 
-#: person/models.py:40 person/models.py:112
+#: person/models.py:42 person/models.py:115
 msgid "Address"
 msgstr "Домашний адрес"
 
-#: person/models.py:41
+#: person/models.py:43
 msgid "Position in company"
 msgstr "Должность"
 
-#: person/models.py:42 person/models.py:113
+#: person/models.py:44 person/models.py:116
 msgid "User BirthDay"
 msgstr "День рождения"
 
-#: person/models.py:43
+#: person/models.py:45
 msgid "date joined"
 msgstr "Дата добавления"
 
-#: person/models.py:44
+#: person/models.py:46
 msgid "Photo"
 msgstr "Фото"
 
-#: person/models.py:46
+#: person/models.py:48
 msgid "active"
 msgstr "Активно"
 
-#: person/models.py:55
+#: person/models.py:57
 msgid "user"
 msgstr "Пользователь"
 
-#: person/models.py:56
+#: person/models.py:58
 msgid "users"
 msgstr "Пользователи"
 
-#: person/models.py:114
+#: person/models.py:117
 msgid "Registration Data"
 msgstr "Дата регистрации"
 
-#: person/models.py:115
+#: person/models.py:118
 msgid "Last Action Data"
 msgstr "Дата последней активности"
 
-#: person/models.py:116
+#: person/models.py:119
 msgid "Comment"
 msgstr "Коментарии"
 
-#: person/models.py:117
+#: person/models.py:120
 msgid "Clients ratio"
 msgstr "Рейтинг клиента"
 
-#: person/models.py:122
+#: person/models.py:127
 msgid "Full Name User"
 msgstr "Фамилия Имя Отчество"
 
-#: person/models.py:127
+#: person/models.py:133
 msgid "Short Name User"
 msgstr "Фамилия И.О."
 
-#: person/models.py:163
+#: person/models.py:171
 msgid "Client"
 msgstr "Клиент"
 
-#: person/models.py:164
+#: person/models.py:172
 msgid "Clients"
 msgstr "Клиенты"
 
-#: person/models.py:168
-#| msgid "first name"
+#: person/models.py:188
 msgid "office name"
 msgstr "Наименование мастерской"
 
-#: person/models.py:169
+#: person/models.py:189
 msgid "Short Code"
 msgstr "Литера имени"
 
-#: person/models.py:169
+#: person/models.py:189
 msgid "Set Short code for current office"
 msgstr "Задайте код офиса для использования в документах"
 
-#: person/models.py:171
-#| msgid "Address"
+#: person/models.py:191
 msgid "address"
 msgstr "Адрес офиса"
 
-#: person/models.py:172
-#| msgid "Address"
+#: person/models.py:192
 msgid "address API"
 msgstr "Адрес API для отображения карты"
 
-#: person/models.py:173
+#: person/models.py:193
 msgid "enabled"
 msgstr "Включено"
 
-#: person/models.py:174
+#: person/models.py:194
 msgid "Start work time"
 msgstr "Начало рабочего дня"
 
-#: person/models.py:175
+#: person/models.py:195
 msgid "Start orders out"
 msgstr "Начало выдачи заказов"
 
-#: person/models.py:176
+#: person/models.py:196
 msgid "End work time"
 msgstr "Конец рабочего дня"
 
-#: person/models.py:180
+#: person/models.py:202
 #, python-format
 msgid "%s - %s"
 msgstr ""
 
-#: person/models.py:186
+#: person/models.py:208
 msgid "Office"
 msgstr "Мастерская"
 
-#: person/models.py:187
+#: person/models.py:209
 msgid "Offices"
 msgstr "Мастерские"
+
+#: person/models.py:217
+#, fuzzy
+#| msgid "last name"
+msgid "storage name"
+msgstr "Фамилия"
+
+#: person/models.py:224
+msgid "Storage"
+msgstr "Склад"
+
+#: person/models.py:225
+msgid "Storages"
+msgstr "Склады"

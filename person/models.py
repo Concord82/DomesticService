@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.contrib.auth.models import PermissionsMixin
@@ -209,3 +211,15 @@ class Offices(models.Model):
 
 #class UserStation(models.Model):
 #    pass
+
+
+class Storages(models.Model):
+    name = models.CharField(_('storage name'), max_length=32)
+    office = models.OneToOneField(Offices, on_delete=models.SET_NULL, blank=True, null=True,)
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.name
+
+    class Meta:
+        verbose_name = _(u'Storage')
+        verbose_name_plural = _(u'Storages')

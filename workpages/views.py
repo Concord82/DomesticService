@@ -6,8 +6,15 @@ from person.models import Clients
 # Create your views here.
 
 
+def test(request):
+    return render(request, '_work_base.html')
+
 def clients(request):
-    return render(request, 'clients.html')
+    client_list = Clients.objects.only(
+        'id', 'first_name', 'last_name', 'middle_name', 'phone', 'address', 'comment').order_by(
+        'lastAction')[:50]
+
+    return render(request, 'clients.html', {'clients': client_list})
 
 
 def clients_search(request):
@@ -18,9 +25,12 @@ def clients_search(request):
         print(clientSearch)
 
         client_list = Clients.objects.filter(
-            phone__icontains=clientSearch
-        )
+            Q(phone__icontains=clientSearch) |
+            Q(last_name__icontains=clientSearch)
+        ).only('id', 'first_name', 'last_name', 'middle_name', 'phone', 'address', 'comment')
         json = serializers.serialize('json', client_list)
+
+        print(json)
 
     return HttpResponse(json, content_type='application/json')
 

@@ -23,3 +23,15 @@
     pointer-events: none;
     color: #aaa;
 }
+
+a {
+  color: #007bff;
+
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: #007bff;
+}
+

@@ -53,6 +53,7 @@ MY_APPS = [
     'catalogs.apps.CatalogsConfig',
     'main.apps.MainConfig',
     'workpages.apps.WorkpagesConfig',
+    'documents.apps.DocumentsConfig',
 ]
 
 INSTALLED_APPS = DJANGO_DEFAULT_APPS + OTHER_APPS + MY_APPS

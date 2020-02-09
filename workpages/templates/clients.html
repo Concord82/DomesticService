@@ -16,36 +16,43 @@
 {% block content %}
     <section id="content">
         <div class="container">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group col-sm-4 has-search">
-                    <span class="fa fa-search form-control-feedback"></span>
-                    <input id="clientSearch" type="text" class="form-control" placeholder="Search">
-                </div>
-            </form>
-        </div>
-        <div id="content">
-            <table id="clients_table">
+            <div class="row">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group has-search">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input id="clientSearch" type="text" class="form-control" placeholder="Search">
+                    </div>
+                </form>
+            </div>
+
+            <div class="row">
+            <table id="clients_table" class="table table-striped table-hover">
                 <thead>
-                    <tr>
-                        <th>Test</th>
-                    </tr>
+                <tr>
+                    <th>Фамилия И.О.</th>
+                    <th>Телефон</th>
+                    <th>Адрес</th>
+                    <th>Коментарий</th>
+                </tr>
                 </thead>
                 <tbody>
-
+                {% for client in clients %}
+                    <tr>
+                        <td>
+                            <a href="{{ client.id }}">{{ client.get_short_name }}</a>
+                        </td>
+                        <td>{{ client.phone }}</td>
+                        <td>{{ client.address }}</td>
+                        <td>{{ client.comment }}</td>
+                    </tr>
+                {% endfor %}
 
                 </tbody>
             </table>
-
-
+            </div>
         </div>
-
-
-
     </section>
-
-
-
 {% endblock %}
 
 {% block footer %}{% endblock %}
@@ -54,7 +61,7 @@
     {{ block.super }}
 
     <script>
-        $( "#clientSearch" ).change(function() {
+        $( "#clientSearch" ).on( "input", function() {
             console.log($("#clientSearch").val())
             $.ajax({
                 type: "POST",
@@ -64,7 +71,24 @@
                     'csrfmiddlewaretoken': '{{ csrf_token }}',
                 },
                 success: function(data){
-                    $("#clients_table").html(data);}
+
+                    $('#clients_table').find("tbody tr").remove();
+
+                    console.log(data);
+                    for(var k in data) {
+                        $table_row = data[k].fields
+                        console.log(k, $table_row.first_name);
+                        $('#clients_table').append(
+                            "<tr>" +
+                            "<td><a href='"+ data[k].pk +"'>" + $table_row.last_name + " " + $table_row.first_name[0]+"." + $table_row.middle_name[0] + ".</a></td>" +
+                            "<td>" + $table_row.phone + "</td>" +
+                            "<td>" + $table_row.address + "</td>" +
+                            "<td>" + $table_row.comment + "</td>" +
+                            "</tr>"
+                        );
+
+                    }
+                    }
             });
         });
     </script>

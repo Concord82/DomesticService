@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_summernote.admin import SummernoteModelAdmin
 
 from .forms import UserAdminCreationForm, UserAdminChangeForm, OfficesForm
-from .models import User, Clients, Offices
+from .models import User, Clients, Offices, Storages
 
 
 class UserAdmin(BaseUserAdmin):
@@ -87,3 +87,7 @@ class AdminClients(SummernoteModelAdmin):
 class OfficesAdmin(admin.ModelAdmin):
     list_display = ('name', 'short_code', 'address','phone','clock_work', 'enabled',)
     form = OfficesForm
+
+@admin.register(Storages)
+class StorageAdmin(admin.ModelAdmin):
+    pass
