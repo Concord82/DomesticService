@@ -8,7 +8,7 @@ django-mptt==0.11.0
 django-picklefield==2.1.1
 django-summernote==0.8.11.6
 docutils==0.16
-Pillow==7.0.0
+Pillow==9.3.0
 pytz==2019.3
 six==1.14.0
 sqlparse==0.3.0
